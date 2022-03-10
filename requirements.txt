@@ -1,0 +1,6 @@
+geopandas
+mercantile
+jupyter
+rtree
+# pygeos
+# numpy==1.17

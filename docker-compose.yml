@@ -1,0 +1,16 @@
+version: '3'
+
+services:
+  map_tiles_downloader:
+    build: .
+    image: registry.michaltorma.com/map_tiles_downloader:latest
+    ports:
+      - "8888:8888"
+    # expose:
+    #   - 8888:8888
+    # stdin_open: true
+    # tty: true
+    environment:
+      - ZOOM=14
+    volumes: 
+      - ./output:/home/user/output
