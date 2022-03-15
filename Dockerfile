@@ -6,7 +6,7 @@ COPY requirements.txt /tmp/requirements.txt
 ENV PATH=/home/user/.local/bin/:$PATH
 RUN pip install -r /tmp/requirements.txt
 RUN mkdir ~/app
-# COPY --chown=user ./app /home/user/app
+COPY --chown=user ./app /home/user/app
 WORKDIR /home/user/app
 # EXPOSE 8888
 CMD ["python3", "map_tiles_downloader.py"]

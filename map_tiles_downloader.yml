@@ -1,0 +1,23 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: map-tiles-downloader
+spec:
+  containers:
+  - name: map-tiles-downloader
+    image: registry.michaltorma.com/map_tiles_downloader:latest
+    resources:
+      requests:
+        memory: "2Gi"
+        cpu: "1.0"
+      limits:
+        memory: "3Gi"
+        cpu: "2.0"
+    volumeMounts:
+        - mountPath: "/home/user/app/output"
+          name: mtd-data
+  restartPolicy: Never
+  volumes:
+    - name: mtd-data
+      persistentVolumeClaim:
+        claimName: mtd-data
