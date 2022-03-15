@@ -7,7 +7,7 @@ from pathlib import Path
 
 from tqdm.notebook import tqdm
 
-from app.libs.downloader import export_geotiffs, get_tile, merge_geotiffs
+from libs.downloader import export_geotiffs, get_tile, merge_geotiffs
 from libs.helper import (generate_tiles, get_bounds_string_of_input,
                          get_input_polygon, get_xyz, load_tiles)
 
