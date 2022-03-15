@@ -8,11 +8,11 @@ spec:
     image: registry.michaltorma.com/map_tiles_downloader:latest
     resources:
       requests:
-        memory: "2Gi"
+        memory: "1Gi"
         cpu: "1.0"
       limits:
-        memory: "3Gi"
-        cpu: "2.0"
+        memory: "1.7Gi"
+        cpu: "1.8"
     volumeMounts:
         - mountPath: "/home/user/app/output"
           name: mtd-data
@@ -21,3 +21,5 @@ spec:
     - name: mtd-data
       persistentVolumeClaim:
         claimName: mtd-data
+  imagePullSecrets:
+  - name: regcred
