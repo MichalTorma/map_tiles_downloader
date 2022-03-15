@@ -1,6 +1,8 @@
 geopandas
 mercantile
 jupyter
-rtree
+rtree>=0.8,<0.9
+tqdm
+# matplotlib
 # pygeos
 # numpy==1.17
