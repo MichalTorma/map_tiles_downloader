@@ -131,3 +131,4 @@ dmypy.json
 # output files
 app/output/tiles/*
 app/tiles/tiles.geojson
+app/output/*.tif
