@@ -39,7 +39,7 @@ def main():
         counter += 1
         if counter > progress_step:
             counter = 0
-            logging.info(f'{idx/progress_step*100}%')
+            logging.info(f'{idx/len(clipped_tiles)*100}%')
         get_tile(crs)
     # clipped_tiles['crs'].progress_apply(lambda x: get_tile(x))
     # for (idx, crs) in clipped_tiles['crs'].iteritems():
