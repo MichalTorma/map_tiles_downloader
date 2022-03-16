@@ -129,6 +129,6 @@ dmypy.json
 .pyre/
 
 # output files
-app/output/tiles/*
+*.png
 app/tiles/tiles.geojson
-app/output/*.tif
+*.tif

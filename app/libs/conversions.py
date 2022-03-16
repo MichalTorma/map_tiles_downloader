@@ -2,6 +2,7 @@
 from math import atan, degrees, log, sinh, tan, radians, cos, pi
 from pathlib import Path
 import gdal
+import re
 import logging
 import os
 import subprocess
