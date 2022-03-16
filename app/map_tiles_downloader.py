@@ -33,7 +33,15 @@ def main():
     logging.info('Extract coordinates')
     clipped_tiles['crs'] = clipped_tiles.id.apply(get_xyz)
     logging.info('Start downloading...')
-    clipped_tiles['crs'].progress_apply(lambda x: get_tile(x))
+    progress_step = len(clipped_tiles)/100
+    counter = 0
+    for idx, crs in clipped_tiles['crs']:
+        counter += 1
+        if counter > progress_step:
+            counter = 0
+            logging.info(f'{idx/progress_step*100}%')
+        get_tile(crs)
+    # clipped_tiles['crs'].progress_apply(lambda x: get_tile(x))
     # for (idx, crs) in clipped_tiles['crs'].iteritems():
 
     logging.info('Download finished, converting to geotiffs...')

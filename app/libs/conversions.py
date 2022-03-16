@@ -52,7 +52,7 @@ def export_geotiffs():
         crs = re.search(r'(\d+)_(\d+)_(\d+)', tile.name).groups()
         crs = [int(x) for x in crs]
         georeference_raster_tile(x=crs[0], y=crs[1], z=crs[2], path=tile)
-        logging.info(crs)
+        logging.debug(crs)
 
 
 def merge_geotiffs():
