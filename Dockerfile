@@ -1,6 +1,5 @@
 FROM osgeo/gdal:ubuntu-small-3.4.1
 RUN apt-get update && apt-get install python3-pip python3-rtree python3-gdal -y
-RUN fallocate -l 10G /swapfile && chmod 600 /swapfile && mkswap /swapfile
 RUN adduser user
 USER user
 COPY requirements.txt /tmp/requirements.txt
