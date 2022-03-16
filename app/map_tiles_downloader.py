@@ -35,7 +35,7 @@ def main():
     logging.info('Start downloading...')
     progress_step = len(clipped_tiles)/100
     counter = 0
-    for idx, crs in clipped_tiles['crs']:
+    for idx, (_, crs) in enumerate(clipped_tiles['crs'].iteritems()):
         counter += 1
         if counter > progress_step:
             counter = 0
