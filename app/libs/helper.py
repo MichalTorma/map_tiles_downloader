@@ -1,4 +1,6 @@
+from importlib.resources import path
 import os
+from pathlib import Path
 import subprocess
 import geopandas as gpd
 from glob import glob
@@ -45,7 +47,10 @@ def get_url():
 
 
 def generate_tiles(zoom: int, bounds_string: str):
-    command = f"echo \"{bounds_string}\" | mercantile tiles {zoom} | mercantile shapes > ~/app/tiles{os.sep}tiles.geojson"
+    tiles_path = Path('~/app/tiles')
+    tiles_path.mkdir(exist_ok=True)
+    tiles_file = tiles_path / 'tiles.geojson'
+    command = f"echo \"{bounds_string}\" | mercantile tiles {zoom} | mercantile shapes > {tiles_file.as_posix()}"
     subprocess.run(command, shell=True, check=True)
 
 # %%

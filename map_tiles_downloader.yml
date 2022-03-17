@@ -6,6 +6,8 @@ spec:
   containers:
   - name: map-tiles-downloader
     image: registry.michaltorma.com/map_tiles_downloader:latest
+    command: [ "/bin/bash", "-c", "--" ]
+    args: [ "while true; do sleep 30; done;" ]
     resources:
       requests:
         memory: "5Gi"
