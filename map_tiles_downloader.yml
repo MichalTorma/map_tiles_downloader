@@ -3,6 +3,8 @@ kind: Pod
 metadata:
   name: map-tiles-downloader
 spec:
+  securityContext:
+      fsGroup: 1000
   containers:
   - name: map-tiles-downloader
     image: registry.michaltorma.com/map_tiles_downloader:latest
