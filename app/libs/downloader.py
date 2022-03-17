@@ -1,3 +1,4 @@
+from urllib.error import HTTPError
 import urllib.request
 import os
 from pathlib import Path
@@ -24,6 +25,8 @@ def get_tile(crs: list):
     try:
         _download_tile(x=crs[0], y=crs[1], z=crs[2],
                     tile_server=get_url(), temp_dir='output/tiles/',)
-    except Exception as e:
-        logging.info(f'Unable to download {crs} - {e}')
-        pass
+    except HTTPError as e:
+        if e.code == 404:
+            logging.debug(f'Unable to download {crs} - {e}')
+            pass
+        raise e
