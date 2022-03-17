@@ -33,7 +33,7 @@ def get_bounds_string_of_input(input_polygon):
 
 
 def load_tiles():
-    return gpd.read_file('./tiles/tiles.geojson')
+    return gpd.read_file('/tmp/tiles.geojson')
 # %%
 
 
@@ -47,7 +47,7 @@ def get_url():
 
 
 def generate_tiles(zoom: int, bounds_string: str):
-    tiles_path = Path('tiles/')
+    tiles_path = Path('/tmp/')
     tiles_path.mkdir(parents=True, exist_ok=True)
     tiles_file = tiles_path / 'tiles.geojson'
     command = f"echo \"{bounds_string}\" | mercantile tiles {zoom} | mercantile shapes > {tiles_file.as_posix()}"
