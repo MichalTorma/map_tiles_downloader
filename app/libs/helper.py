@@ -32,8 +32,8 @@ def get_bounds_string_of_input(input_polygon):
 # %%
 
 
-def load_tiles():
-    return gpd.read_file('/tmp/tiles.geojson')
+def load_tiles(mask):
+    return gpd.read_file('/tmp/tiles.geojson', mask=mask)
 # %%
 
 

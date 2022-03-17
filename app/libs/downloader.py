@@ -2,6 +2,7 @@ import urllib.request
 import os
 from pathlib import Path
 import logging
+from libs.helper import get_url
 
 def _download_tile(x: int, y: int, z: int, tile_server: str, temp_dir: Path):
     url = tile_server.replace(
@@ -23,6 +24,6 @@ def get_tile(crs: list):
     try:
         _download_tile(x=crs[0], y=crs[1], z=crs[2],
                     tile_server=get_url(), temp_dir='output/tiles/',)
-    except:
-        logging.debug(f'Unable to download {crs}')
+    except Exception as e:
+        logging.info(f'Unable to download {crs} - {e}')
         pass

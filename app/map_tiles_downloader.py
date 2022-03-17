@@ -28,8 +28,9 @@ def main():
     logging.info('Generate tiles...')
     generate_tiles(zoom=zoom, bounds_string=bounds_string)
     logging.info('Clip tiles')
-    tiles = load_tiles()
-    clipped_tiles = tiles.clip(input_polygon)
+    clipped_tiles = load_tiles(input_polygon)
+    # clipped_tiles = tiles.clip(input_polygon)
+    # clipped_tiles
     logging.info('Extract coordinates')
     clipped_tiles['crs'] = clipped_tiles.id.apply(get_xyz)
     logging.info('Start downloading...')
