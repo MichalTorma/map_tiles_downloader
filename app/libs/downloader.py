@@ -29,4 +29,5 @@ def get_tile(crs: list):
         if e.code == 404:
             logging.debug(f'Unable to download {crs} - {e}')
             pass
-        raise e
+        else:
+            raise e
