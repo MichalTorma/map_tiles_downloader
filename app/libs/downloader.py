@@ -37,7 +37,7 @@ def get_tile(crs: list, retry: int = 0):
             logging.warning(f'Unable to download {crs} - {e}')
             logging.info('Waiting 5s...')
             time.sleep(5)
-            get_tile(crs-crs, retry=retry+1)
+            get_tile(crs=crs, retry=retry+1)
             logging.info('Try again...')
         else:
             raise e
