@@ -47,8 +47,8 @@ def get_url():
 
 
 def generate_tiles(zoom: int, bounds_string: str):
-    tiles_path = Path('~/app/tiles')
-    tiles_path.mkdir(exist_ok=True)
+    tiles_path = Path('~/app/tiles/')
+    tiles_path.mkdir(parents=True, exist_ok=True)
     tiles_file = tiles_path / 'tiles.geojson'
     command = f"echo \"{bounds_string}\" | mercantile tiles {zoom} | mercantile shapes > {tiles_file.as_posix()}"
     subprocess.run(command, shell=True, check=True)
