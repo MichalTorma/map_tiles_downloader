@@ -132,3 +132,6 @@ dmypy.json
 *.png
 app/*.geojson
 *.tif
+
+# other
+**/.DS_Store
