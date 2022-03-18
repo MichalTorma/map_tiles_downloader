@@ -8,8 +8,8 @@ spec:
   containers:
   - name: map-tiles-downloader
     image: registry.michaltorma.com/map_tiles_downloader:latest
-    command: [ "/bin/bash", "-c", "--" ]
-    args: [ "while true; do sleep 30; done;" ]
+    # command: [ "/bin/bash", "-c", "--" ]
+    # args: [ "while true; do sleep 30; done;" ]
     resources:
       requests:
         memory: "5Gi"
@@ -24,7 +24,7 @@ spec:
         - name: ZOOM
           value: "14"
         - name: URL
-          value: "https://heatmap-external-{server}.strava.com/tiles-auth/winter/gray/{z}/{x}/{y}.png?Key-Pair-Id=APKAIDPUN4QMG7VUQPSA&Policy=eyJTdGF0ZW1lbnQiOiBbeyJSZXNvdXJjZSI6Imh0dHBzOi8vaGVhdG1hcC1leHRlcm5hbC0qLnN0cmF2YS5jb20vKiIsIkNvbmRpdGlvbiI6eyJEYXRlTGVzc1RoYW4iOnsiQVdTOkVwb2NoVGltZSI6MTY0Nzc5MjA3MH0sIkRhdGVHcmVhdGVyVGhhbiI6eyJBV1M6RXBvY2hUaW1lIjoxNjQ2NTY4MDcwfX19XX0_&Signature=bpbKG0gO0~AG~g-t3ESnNiBULZpeiRWaz-QkY9rDrIQM6zA3CNzPO0mQkjIybzrSCfW91G5qagwuvwB6PLOhpZgfbJch10IfA6CKLolgoo-WxHcDIjiRuwEa6BfTVMW~4F2EUuwES24IV0gI2G43guY09-2cbFoQ90K306n0RPMjLYJ2eKh7ZLbqry57VWWie7Zzlj72RGZThjTCc568sXLxuGAvSRDxmYwZiizKroeX-YeFleoQgoicKKfM4NKOJQ1-99x8HjvcDB0MalbNXNb9UEVlXDQ5TFKCWVXDgoic6ujPyoJzO8nSzAUIlu1FAhPwflv1bAWbTL1l4wQ1mQ__"
+          value: "https://heatmap-external-{server}.strava.com/tiles-auth/all/gray/{z}/{x}/{y}.png?Key-Pair-Id=APKAIDPUN4QMG7VUQPSA&Policy=eyJTdGF0ZW1lbnQiOiBbeyJSZXNvdXJjZSI6Imh0dHBzOi8vaGVhdG1hcC1leHRlcm5hbC0qLnN0cmF2YS5jb20vKiIsIkNvbmRpdGlvbiI6eyJEYXRlTGVzc1RoYW4iOnsiQVdTOkVwb2NoVGltZSI6MTY0Nzc5MjA3MH0sIkRhdGVHcmVhdGVyVGhhbiI6eyJBV1M6RXBvY2hUaW1lIjoxNjQ2NTY4MDcwfX19XX0_&Signature=bpbKG0gO0~AG~g-t3ESnNiBULZpeiRWaz-QkY9rDrIQM6zA3CNzPO0mQkjIybzrSCfW91G5qagwuvwB6PLOhpZgfbJch10IfA6CKLolgoo-WxHcDIjiRuwEa6BfTVMW~4F2EUuwES24IV0gI2G43guY09-2cbFoQ90K306n0RPMjLYJ2eKh7ZLbqry57VWWie7Zzlj72RGZThjTCc568sXLxuGAvSRDxmYwZiizKroeX-YeFleoQgoicKKfM4NKOJQ1-99x8HjvcDB0MalbNXNb9UEVlXDQ5TFKCWVXDgoic6ujPyoJzO8nSzAUIlu1FAhPwflv1bAWbTL1l4wQ1mQ__"
   restartPolicy: Never
   volumes:
     - name: mtd-data
