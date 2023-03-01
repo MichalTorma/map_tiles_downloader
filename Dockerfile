@@ -1,4 +1,4 @@
-FROM osgeo/gdal:ubuntu-small-3.4.1
+FROM osgeo/gdal:ubuntu-small-latest
 RUN apt-get update && apt-get install python3-pip python3-rtree python3-gdal -y
 RUN adduser user
 USER user
@@ -9,5 +9,6 @@ RUN mkdir ~/app
 COPY --chown=user ./app /home/user/app
 WORKDIR /home/user/app
 # EXPOSE 8888
+# CMD [ "tail", "-f", "/dev/null" ]
 CMD ["python3", "map_tiles_downloader.py"]
 # CMD [ "jupyter", "notebook", "--ip", "0.0.0.0"]

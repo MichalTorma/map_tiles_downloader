@@ -1,7 +1,7 @@
 
 from math import atan, degrees, log, sinh, tan, radians, cos, pi
 from pathlib import Path
-import gdal
+from osgeo import gdal
 import re
 import logging
 import os
@@ -58,7 +58,7 @@ def export_geotiffs():
 def merge_geotiffs():
     merge_command = ['gdal_merge.py', '-o', 'output/result.tif',
                      '-co',  'COMPRESS=LZW',  '-co',  'BIGTIFF=YES',
-                     '-co',  'PREDICTOR=2',  '-co',  'TILED=YES', '-co',  'SPARSE_OK=TRUE']
+                     '-co',  'PREDICTOR=2',  '-co',  'TILED=YES', '-co',  'SPARSE_OK=TRUE', 'output/tiles/*.tif']
 
     for file in Path('output/tiles').glob('*.tif'):
         merge_command.append(file.as_posix())
