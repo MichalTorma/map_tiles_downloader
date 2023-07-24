@@ -8,7 +8,8 @@ services:
       - "8888:8888"
     environment:
       - ZOOM=14
-      - URL=https://heatmap-external-{server}.strava.com/tiles-auth/all/gray/{z}/{x}/{y}.png?Key-Pair-Id=APKAIDPUN4QMG7VUQPSA&Policy=eyJTdGF0ZW1lbnQiOiBbeyJSZXNvdXJjZSI6Imh0dHBzOi8vaGVhdG1hcC1leHRlcm5hbC0qLnN0cmF2YS5jb20vKiIsIkNvbmRpdGlvbiI6eyJEYXRlTGVzc1RoYW4iOnsiQVdTOkVwb2NoVGltZSI6MTY3ODUyNjMzN30sIkRhdGVHcmVhdGVyVGhhbiI6eyJBV1M6RXBvY2hUaW1lIjoxNjc3MzAyMzM3fX19XX0_&Signature=naYBzjrIAI8~TY9VEX1-dO3BIUWKTyz-2L-~OPp-oAhEGAvzIUFKZ63rWGz7zcclub~XF4Y3veQmle7Doyhetv-g2D5kW5kGSrmMxIzOhYYStd3R5~glmNEHl-WEmq7UqJ4iQjGP16M~2Gp0MnHmFyH8FB5VX~z8s5603O3IBbXcvNxTBdhIerCWZ0L~1fD2Uti8tR45KoctySD~N4sM9Gdvk3i6NMWx6U2xKD70aVKqKCxC72bTqpGsY5PCWryP9GRBkTNyj-tnBexQyN2ZWVTks81zvoLDUlI0-valrSEXwoBx7AdBtXLqQN7BaNTCtQ3jt~F7vElyDBuaU4S2uw__
+      - URL=https://heatmap-external-{server}.strava.com/tiles-auth/all/gray/{z}/{x}/{y}.png?Key-Pair-Id=APKAIDPUN4QMG7VUQPSA&Policy=eyJTdGF0ZW1lbnQiOiBbeyJSZXNvdXJjZSI6Imh0dHBzOi8vaGVhdG1hcC1leHRlcm5hbC0qLnN0cmF2YS5jb20vKiIsIkNvbmRpdGlvbiI6eyJEYXRlTGVzc1RoYW4iOnsiQVdTOkVwb2NoVGltZSI6MTY5MTA1MDc3MX0sIkRhdGVHcmVhdGVyVGhhbiI6eyJBV1M6RXBvY2hUaW1lIjoxNjg5ODI2NzcxfX19XX0_&Signature=YO165hjX0HAJJffMC-pT5gVUU54Cr-1aEFeBjc-LH2364MUfP3FHQvuhKgg92VJS2XgZ6moIy6Ln2I8yUWGJMWeng-VP3UoLVWS0E7x0tra3boHBBQCa4~0nwa3ntYz8UcKPDRP2ZfLy8diJ0TyszPZl3Snt7Nun9xp8K3j0wkp2webj3TwZR-LA~Y1Z5A9X-DtiI-rYs8bHrPM-7yN1tOecnCHemCel5R5V2psTmzFzaKSyw5T81lB2qZCAJKLVu4eaKkNHRfdRTLe5OK28EYIfm5Eb9aquYHQSv1FcYGH192gBR6afbvSGdR8sgKLhryEI2oTycWA3T0YXR3gOnQ__
+    command: ["tail", "-f", "/dev/null"]
     volumes:
       - ./app:/home/user/app
     # mem_reservation: 10Gi
