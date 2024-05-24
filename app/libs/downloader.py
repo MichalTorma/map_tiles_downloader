@@ -5,6 +5,7 @@ import os
 from pathlib import Path
 import logging
 from libs.helper import get_url
+import pandas as pd
 
 def _download_tile(x: int, y: int, z: int, tile_server: str, temp_dir: Path):
     url = tile_server.replace(
@@ -17,7 +18,7 @@ def _download_tile(x: int, y: int, z: int, tile_server: str, temp_dir: Path):
     urllib.request.urlretrieve(url, path)
     return(path)
 
-def get_tile(crs: list, retry: int = 0):
+def get_tile(crs: list, already_used: list,retry: int = 0):
     if(retry >= 5):
         logging.error('Unable to download {crs} - Skipping...')
         return
@@ -26,13 +27,20 @@ def get_tile(crs: list, retry: int = 0):
     tile_file = Path('output/tiles') / \
         Path(f'{crs[0]}_{crs[1]}_{crs[2]}.png')
     if tile_file.exists():
+        logging.debug(f'{tile_file.name} already exist. Skipping...')
+        return
+    if tile_file.name in already_used:
+        logging.debug(f'{tile_file.name} is empty based on previous run. Skipping...')
         return
     try:
         _download_tile(x=crs[0], y=crs[1], z=crs[2],
                     tile_server=get_url(), temp_dir='output/tiles/',)
     except HTTPError as e:
         if e.code == 404:
-            logging.debug(f'Unable to download {crs} - {e}')
+            logging.debug(f'Unable to download - empty {crs} - {e}')
+            already_used.append(tile_file.name)
+            au_df = pd.DataFrame({'name': already_used})
+            au_df.to_csv('output/already_used.csv', index=False)
         elif e.code == 502:
             logging.warning(f'Unable to download {crs} - {e}')
             logging.info('Waiting 5s...')
