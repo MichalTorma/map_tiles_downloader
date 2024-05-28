@@ -8,7 +8,7 @@ services:
       - "8888:8888"
     environment:
       - ZOOM=14
-      - URL=https://heatmap-external-{server}.strava.com/tiles-auth/run/gray/{z}/{x}/{y}.png?Key-Pair-Id=APKAIDPUN4QMG7VUQPSA&Policy=eyJTdGF0ZW1lbnQiOiBbeyJSZXNvdXJjZSI6Imh0dHBzOi8vaGVhdG1hcC1leHRlcm5hbC0qLnN0cmF2YS5jb20vKiIsIkNvbmRpdGlvbiI6eyJEYXRlTGVzc1RoYW4iOnsiQVdTOkVwb2NoVGltZSI6MTcxNjYyNDcxOH0sIkRhdGVHcmVhdGVyVGhhbiI6eyJBV1M6RXBvY2hUaW1lIjoxNzE1NDAwNzE4fX19XX0_&Signature=JsDmhbX8WBMx5z9RrgFbTSSEgrXJi8R0S8ul3nig8FEMpr6awSPfoDLUr5P3~irTilEktVM0T9KC1Q7RjCJPbao91KHGYCuAOe0QOKyFOEU~53CQohJNZf18zHQqtshrVRkpREECzehyDmqju-vocr~nrE69hMoMifWfhPMhjcSo1qUYcdoZVB8SsqVvIEAvBNWLZ-vfcK45VdmNwbwDX-lhOkhnTse4wBOzJQ96Sb2sth-4C3lW5oWopTjQMsWWN8nmIAHOVW3Mg0miVIuNCyQK7SVUJkHbamFASXPpQBvQZ0eycWTCz1BELFuWWQY2W07Oqgqyp6tHVOouhvpQzQ__
+      - URL=https://heatmap-external-{server}.strava.com/tiles-auth/all/gray/{z}/{x}/{y}.png?Key-Pair-Id=APKAIDPUN4QMG7VUQPSA&Policy=eyJTdGF0ZW1lbnQiOiBbeyJSZXNvdXJjZSI6Imh0dHBzOi8vaGVhdG1hcC1leHRlcm5hbC0qLnN0cmF2YS5jb20vKiIsIkNvbmRpdGlvbiI6eyJEYXRlTGVzc1RoYW4iOnsiQVdTOkVwb2NoVGltZSI6MTcxNjYyNDcxOH0sIkRhdGVHcmVhdGVyVGhhbiI6eyJBV1M6RXBvY2hUaW1lIjoxNzE1NDAwNzE4fX19XX0_&Signature=JsDmhbX8WBMx5z9RrgFbTSSEgrXJi8R0S8ul3nig8FEMpr6awSPfoDLUr5P3~irTilEktVM0T9KC1Q7RjCJPbao91KHGYCuAOe0QOKyFOEU~53CQohJNZf18zHQqtshrVRkpREECzehyDmqju-vocr~nrE69hMoMifWfhPMhjcSo1qUYcdoZVB8SsqVvIEAvBNWLZ-vfcK45VdmNwbwDX-lhOkhnTse4wBOzJQ96Sb2sth-4C3lW5oWopTjQMsWWN8nmIAHOVW3Mg0miVIuNCyQK7SVUJkHbamFASXPpQBvQZ0eycWTCz1BELFuWWQY2W07Oqgqyp6tHVOouhvpQzQ__
     command: ["tail", "-f", "/dev/null"]
     volumes:
       - ./app:/home/user/app
