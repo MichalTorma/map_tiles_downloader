@@ -71,38 +71,55 @@ def export_geotiffs():
 
 import subprocess
 from pathlib import Path
+import logging
+
+# Configure logging
+logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
+
+def merge_files(file_list, output_file):
+    logging.info(f"Merging {len(file_list)} files into {output_file}...")
+    merge_command = ['gdal_merge.py', '-o', output_file,
+                     '-co', 'COMPRESS=LZW', '-co', 'BIGTIFF=YES',
+                     '-co', 'PREDICTOR=2', '-co', 'TILED=YES', '-co', 'SPARSE_OK=TRUE']
+    merge_command.extend(file_list)
+    result = subprocess.run(merge_command, capture_output=True, text=True)
+    if result.returncode != 0:
+        logging.error(f"Error merging files into {output_file}: {result.stderr}")
+    else:
+        logging.info(f"Successfully merged files into {output_file}")
 
 def merge_geotiffs():
-    # Function to merge a list of files
-    def merge_files(file_list, output_file):
-        merge_command = ['gdal_merge.py', '-o', output_file,
-                         '-co', 'COMPRESS=LZW', '-co', 'BIGTIFF=YES',
-                         '-co', 'PREDICTOR=2', '-co', 'TILED=YES', '-co', 'SPARSE_OK=TRUE']
-        merge_command.extend(file_list)
-        result = subprocess.run(merge_command, capture_output=True, text=True)
-        if result.returncode != 0:
-            print(f"Error merging files into {output_file}:")
-            print(result.stderr)
-        else:
-            print(f"Successfully merged files into {output_file}")
+    logging.info("Starting the merge process...")
 
     # Get all TIFF files
     all_tiff_files = list(Path('output/tiles').glob('*.tif'))
+    logging.info(f"Found {len(all_tiff_files)} GeoTIFF files to merge.")
 
-    # Define batch size
-    batch_size = 5000
+    # Group files by Y coordinate
+    files_by_y = {}
+    for file in all_tiff_files:
+        _, y, _ = file.stem.split('_')
+        if y not in files_by_y:
+            files_by_y[y] = []
+        files_by_y[y].append(file)
 
-    # Merge in batches
-    intermediate_files = []
-    for i in range(0, len(all_tiff_files), batch_size):
-        batch_files = all_tiff_files[i:i+batch_size]
-        intermediate_output = f'output/intermediate_{i//batch_size}.tif'
-        merge_files([file.as_posix() for file in batch_files], intermediate_output)
-        intermediate_files.append(intermediate_output)
+    # Merge files by rows (Y axis)
+    intermediate_files_by_y = []
+    for y, files in files_by_y.items():
+        intermediate_output_y = f'output/intermediate_y_{y}.tif'
+        logging.info(f"Processing Y-coordinate group {y} with {len(files)} files.")
+        merge_files([file.as_posix() for file in files], intermediate_output_y)
+        intermediate_files_by_y.append(intermediate_output_y)
 
-    # Merge all intermediate files into the final output
-    merge_files(intermediate_files, 'output/result.tif')
+    # Merge all intermediate Y files into the final output
+    logging.info(f"Merging {len(intermediate_files_by_y)} intermediate files into the final output.")
+    merge_files(intermediate_files_by_y, 'output/result.tif')
 
-    # # Cleanup intermediate files
-    # for file in intermediate_files:
+    logging.info("Merge process completed.")
+
+    # Cleanup intermediate files (uncomment if needed)
+    # for file in intermediate_files_by_y:
     #     Path(file).unlink()
+
+if __name__ == "__main__":
+    merge_geotiffs()
