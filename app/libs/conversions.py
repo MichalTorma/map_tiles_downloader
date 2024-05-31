@@ -74,7 +74,7 @@ from pathlib import Path
 import logging
 
 # Configure logging
-logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
+
 
 def merge_files(file_list, output_file):
     logging.info(f"Merging {len(file_list)} files into {output_file}...")
@@ -106,7 +106,7 @@ def merge_geotiffs():
     # Merge files by rows (Y axis)
     intermediate_files_by_y = []
     for y, files in files_by_y.items():
-        intermediate_output_y = f'output/intermediate_y_{y}.tif'
+        intermediate_output_y = f'output/intermediate/intermediate_y_{y}.tif'
         logging.info(f"Processing Y-coordinate group {y} with {len(files)} files.")
         merge_files([file.as_posix() for file in files], intermediate_output_y)
         intermediate_files_by_y.append(intermediate_output_y)

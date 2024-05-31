@@ -136,3 +136,5 @@ app/*.geojson
 # other
 **/.DS_Store
 **/*.bak
+**/already_used.csv
+*.sif

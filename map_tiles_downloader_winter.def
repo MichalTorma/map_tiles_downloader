@@ -1,0 +1,29 @@
+BootStrap: docker
+From: osgeo/gdal:ubuntu-small-3.6.2
+
+%post
+    apt-get update && apt-get install python3-pip python3-rtree python3-gdal ca-certificates -y
+    adduser --disabled-password --gecos "" michato
+%files
+    /home/michato/src/map_tiles_downloader_copy/requirements.txt /requirements.txt
+    /home/michato/src/map_tiles_downloader_copy/app /app
+%environment
+    export ZOOM=14
+    export URL='https://heatmap-external-{server}.strava.com/tiles-auth/all/gray/{z}/{x}/{y}.png?Key-Pair-Id=APKAIDPUN4QMG7VUQPSA&Policy=eyJTdGF0ZW1lbnQiOiBbeyJSZXNvdXJjZSI6Imh0dHBzOi8vaGVhdG1hcC1leHRlcm5hbC0qLnN0cmF2YS5jb20vKiIsIkNvbmRpdGlvbiI6eyJEYXRlTGVzc1RoYW4iOnsiQVdTOkVwb2NoVGltZSI6MTcxNzg0NzQ0OX0sIkRhdGVHcmVhdGVyVGhhbiI6eyJBV1M6RXBvY2hUaW1lIjoxNzE2NjIzNDQ5fX19XX0_&Signature=Kn4-nY-6xhnP0DXCGbf02gQfFXZ5ZeVO7Ss7us1MGcafbycTpEoEsvC6VkPu9fJehCde0Ik-cG4ppIqiJ3Qqa2H2ryaed21au-rBP4kRpLhzaat2HKBWDDOxPr0ipiS7VPgxW6cHsNwVRn0~fB5oKl2gjkt~IMr0k2o0e7e~LYw6hjMaTblRDF8CJ2VCbfZjCLQ5wlHQJMuzIptknD7PyfKbojchn-bjK7Jw7E-oe2YMCsaSz~eCBvMht1XmXV3OB~TEnidJHgZvRxROszBcnuUie0mjVK6JXF8ilAtdT7~kCA29e-liSehwl3VBtP9nqSCAcVyYOZl7tRUXxxFKtA__'
+    export WORKDIR=/app
+%post
+    pip install -r /requirements.txt
+
+%labels
+    Maintainer michato
+
+%runscript
+    cd $WORKDIR
+    exec python3 ./map_tiles_downloader.py
+
+%startscript
+    cd $WORKDIR
+    exec python3 ./map_tiles_downloader.py
+
+%test
+    echo "Test the Apptainer container"

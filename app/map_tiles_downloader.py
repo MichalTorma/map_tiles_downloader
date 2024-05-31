@@ -6,6 +6,10 @@ import re
 from pathlib import Path
 import pandas as pd
 from tqdm.notebook import tqdm
+import ssl
+
+# Disable SSL verification
+ssl._create_default_https_context = ssl._create_unverified_context
 
 from libs.conversions import export_geotiffs, merge_geotiffs
 from libs.downloader import get_tile
